@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "775216962333",
+    "firebase_url": "https://sw-mini-project-88e60-default-rtdb.firebaseio.com",
+    "project_id": "sw-mini-project-88e60",
+    "storage_bucket": "sw-mini-project-88e60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775216962333:android:a89f8b07b729cb239a1ff4",
+        "android_client_info": {
+          "package_name": "com.swminiproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775216962333-6reaucn35shj6o78s44p4m54sn0ctbn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSz1UAVtQHrM0lfS5bdf-sb00gihyonpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775216962333-6reaucn35shj6o78s44p4m54sn0ctbn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
