@@ -4,7 +4,6 @@ import { ScrollView, Text } from 'react-native';
 import firebase from 'firebase/app'
 import "firebase/database"
 import "firebase/firestore"
-//import firestore from '@react-native-firebase/firestore';
 import { Appbar, TextInput, Button } from 'react-native-paper';
 
 import XMLHttpRequest from 'xhr2'
@@ -62,9 +61,6 @@ function App() {
           numCalories = data.foods[0].foodNutrients[3].value;
           
           storeData(recipe, numCalories)
-          
-          console.log(`Inputted Ingredient: ${ingr}`)
-          console.log(`Calories per Serving (KCAL): ${numCalories}`)
 
           setIngr('');
         };
