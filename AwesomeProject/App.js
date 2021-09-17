@@ -42,19 +42,31 @@ function App() {
     // params for search query
     const params = {
         api_key: "XBwGjHHbxdHo5vHqUehrGIKh1k5mgo27txZJeifS",
-        query: text,
+        query: '',
         dataType: ["Branded"],
         pagesize: 1
     }
 
-    //const api_url = 
-    //`https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(1)}`
-    
 
     function LoginScreen({ navigation }) {
       return(
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Button title="Login" onPress={() => navigation.push('Main Menu')} />
+          <Button title="Login" onPress={() => navigation.push('Recipe Screen')} />
+        </View>
+      );
+    }
+
+
+    function RecipeScreen({ navigation }) {
+      return(
+        <View>
+          <TextInput
+            style={styles.input}
+            onChangeText={setRecipe}
+            value={recipe}
+            placeholder='Enter recipe name' 
+          />
+          <Button title="Continue" onPress={() => navigation.navigate('Main Menu')} />
         </View>
       );
     }
@@ -63,7 +75,7 @@ function App() {
     function MainMenu({ navigation }) {
       return(
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
-          <Button title="Camera Screen" onPress={() => navigation.push('Open Camera')} />
+          <Button title="Open Camera" onPress={() => navigation.navigate('Camera Screen')} />
           <Button title="View Ingredients" onPress={() => navigation.navigate('Saved Ingredients')} />
         </View>
       );
@@ -88,6 +100,7 @@ function App() {
         data = data.substring(1);
         setScanned(true);
         setText(data);
+        params.query = data;
         const api_url = 
         `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(params.pagesize)}`
         getFDCData(api_url);
@@ -141,7 +154,7 @@ function App() {
     function storeData(name, calories) {
       firebase
         .database()
-        .ref('ingredients/' + name)
+        .ref(recipe + '/' + name)
         .set({
           calories: calories
         });
@@ -151,7 +164,7 @@ function App() {
     function getFirebaseData() {
       var output = {}
       firebase.database()
-      .ref('ingredients/')
+      .ref(recipe + '/')
       .on('value', function (snapshot) {
         var ingrJSON = snapshot.toJSON()
         for (var key of Object.keys(ingrJSON)) {
@@ -184,6 +197,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login Screen" component={LoginScreen} />
+        <Stack.Screen name="Recipe Screen" component={RecipeScreen} />
         <Stack.Screen name="Main Menu" component={MainMenu} />
         <Stack.Screen name="Camera Screen" component={CameraScreen} />
         <Stack.Screen name="Saved Ingredients" component={IngredientsScreen} />
