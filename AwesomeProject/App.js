@@ -47,8 +47,8 @@ function App() {
         pagesize: 1
     }
 
-    const api_url = 
-    `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(1)}`
+    //const api_url = 
+    //`https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(1)}`
     
 
     function LoginScreen({ navigation }) {
@@ -85,9 +85,12 @@ function App() {
     
       // What happens when we scan the bar code
       const handleBarCodeScanned = ({ type, data }) => {
+        data = data.substring(1);
         setScanned(true);
         setText(data);
-        getFDCData();
+        const api_url = 
+        `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(params.pagesize)}`
+        getFDCData(api_url);
         console.log('Type: ' + type + '\nData: ' + data)
       };
     
@@ -159,7 +162,7 @@ function App() {
     }
 
 
-    async function getFDCData() {
+    async function getFDCData(api_url) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', api_url);
 
