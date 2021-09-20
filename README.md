@@ -10,7 +10,9 @@ Unfortunately due to time constraints and an unexpected PC wipe, Google Authenti
 _____
 
 # Additional Required Dependencies:
-Install using npm:
+Install using *npm install*:
 - expo-barcode-scanner
-- expo firebase
 - @react-navigation
+
+Install using *expo install*:
+- expo firebase
