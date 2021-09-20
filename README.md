@@ -15,4 +15,4 @@ Install using ```npm install``` :
 - @react-navigation
 
 Install using ```expo install``` :
-- expo firebase
+- firebase
